@@ -1,93 +1,108 @@
 import { useState } from "react";
+import { User, CalendarDays, Clock } from "lucide-react";
 
 export default function AddAppointment() {
   const [formData, setFormData] = useState({
-    patientId: "",
+    patientName: "",
+    doctor: "",
     date: "",
     time: "",
-    type: "consultation",
-    doctor: "",
-    notes: "",
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
-    >
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("New appointment:", formData);
-    // później: wysłanie do backendu
+    // TODO: backend integration
   };
 
   return (
-    <div className="max-w-xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Add New Appointment
-      </h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          name="patientId"
-          placeholder="Patient ID"
-          value={formData.patientId}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="date"
-          name="date"
-          value={formData.date}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <input
-          type="time"
-          name="time"
-          value={formData.time}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <select
-          name="type"
-          value={formData.type}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-        >
-          <option value="consultation">Consultation</option>
-          <option value="follow-up">Follow-up</option>
-          <option value="surgery">Surgery</option>
-        </select>
-        <input
-          type="text"
-          name="doctor"
-          placeholder="Doctor's name"
-          value={formData.doctor}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          required
-        />
-        <textarea
-          name="notes"
-          placeholder="Notes / Recommendations"
-          value={formData.notes}
-          onChange={handleChange}
-          className="w-full border p-2 rounded"
-          rows={3}
-        />
+    <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow">
+      <h2 className="text-2xl font-bold text-blue-700 mb-6">Add Appointment</h2>
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Patient */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Patient Name
+          </label>
+          <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50">
+            <User className="w-5 h-5 text-gray-400 mr-2" />
+            <input
+              type="text"
+              name="patientName"
+              value={formData.patientName}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent outline-none text-gray-800"
+              placeholder="Elena Müller"
+            />
+          </div>
+        </div>
+
+        {/* Doctor */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Doctor
+          </label>
+          <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50">
+            <User className="w-5 h-5 text-gray-400 mr-2" />
+            <input
+              type="text"
+              name="doctor"
+              value={formData.doctor}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent outline-none text-gray-800"
+              placeholder="Dr. Nowak"
+            />
+          </div>
+        </div>
+
+        {/* Date */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Date
+          </label>
+          <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50">
+            <CalendarDays className="w-5 h-5 text-gray-400 mr-2" />
+            <input
+              type="date"
+              name="date"
+              value={formData.date}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent outline-none text-gray-800"
+            />
+          </div>
+        </div>
+
+        {/* Time */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Time
+          </label>
+          <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50">
+            <Clock className="w-5 h-5 text-gray-400 mr-2" />
+            <input
+              type="time"
+              name="time"
+              value={formData.time}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent outline-none text-gray-800"
+            />
+          </div>
+        </div>
 
         <button
           type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-sm font-medium"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg text-sm font-medium transition"
         >
-          Add Appointment
+          Save Appointment
         </button>
       </form>
     </div>

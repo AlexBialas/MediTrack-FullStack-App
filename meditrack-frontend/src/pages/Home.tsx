@@ -60,10 +60,6 @@ export default function Home() {
             />
           </div>
         </div>
-
-        <div className="flex justify-center mt-10">
-          <ArrowDown className="w-6 h-6 animate-bounce text-blue-500" />
-        </div>
       </motion.section>
 
       {/* Features */}

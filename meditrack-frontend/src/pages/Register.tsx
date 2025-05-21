@@ -1,91 +1,89 @@
 import { useState } from "react";
+import { Mail, Lock, UserPlus } from "lucide-react";
 
 export default function Register() {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    role: "user",
-  });
-
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
-  ) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
-      return;
-    }
-
-    console.log("Register attempt:", formData);
+    console.log("Registering:", { name, email, password });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-3xl font-semibold text-center text-blue-700 mb-6">
-          Create an Account
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md">
+        <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
+          Create Your Account
         </h2>
 
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <input
-            name="name"
-            type="text"
-            placeholder="Full name"
-            value={formData.name}
-            onChange={handleChange}
-            className="w-full border p-2 rounded mt-1"
-            required
-          />
-          <input
-            name="email"
-            type="email"
-            placeholder="you@example.com"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full border p-2 rounded mt-1"
-            required
-          />
-          <input
-            name="password"
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={handleChange}
-            className="w-full border p-2 rounded mt-1"
-            required
-          />
-          <input
-            name="confirmPassword"
-            type="password"
-            placeholder="Confirm Password"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            className="w-full border p-2 rounded mt-1"
-            required
-          />
-          <select
-            name="role"
-            value={formData.role}
-            onChange={handleChange}
-            className="w-full border p-2 rounded mt-1"
-          >
-            <option value="user">User</option>
-            <option value="admin">Admin</option>
-          </select>
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Name
+            </label>
+            <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50 focus-within:ring-2 ring-blue-400">
+              <UserPlus className="w-5 h-5 text-gray-400 mr-2" />
+              <input
+                type="text"
+                className="flex-1 bg-transparent outline-none text-gray-800"
+                placeholder="Your full name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Email
+            </label>
+            <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50 focus-within:ring-2 ring-blue-400">
+              <Mail className="w-5 h-5 text-gray-400 mr-2" />
+              <input
+                type="email"
+                className="flex-1 bg-transparent outline-none text-gray-800"
+                placeholder="you@example.com"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1 text-gray-700">
+              Password
+            </label>
+            <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50 focus-within:ring-2 ring-blue-400">
+              <Lock className="w-5 h-5 text-gray-400 mr-2" />
+              <input
+                type="password"
+                className="flex-1 bg-transparent outline-none text-gray-800"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+          </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded text-sm font-medium"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2.5 rounded-lg text-sm font-medium transition"
           >
             Register
           </button>
         </form>
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          Already have an account?{" "}
+          <a href="/login" className="text-blue-600 hover:underline">
+            Log in
+          </a>
+        </p>
       </div>
     </div>
   );

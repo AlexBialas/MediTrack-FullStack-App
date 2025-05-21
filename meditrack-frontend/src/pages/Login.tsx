@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Lock, Mail } from "lucide-react";
+import { Mail, Lock } from "lucide-react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -7,20 +7,20 @@ export default function Login() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Login attempt:", { email, password });
+    console.log("Logging in:", { email, password });
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 px-4">
-      <div className="w-full max-w-md bg-white rounded-2xl shadow-lg p-8">
-        <h2 className="text-3xl font-semibold text-center text-blue-700 mb-8">
-          Login to MediTrack
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-md">
+        <h2 className="text-3xl font-bold text-center text-blue-700 mb-6">
+          Log In to MediTrack
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label className="block text-sm font-medium mb-1 text-gray-700">
-              Email address
+              Email
             </label>
             <div className="flex items-center border rounded-md px-3 py-2 bg-gray-50 focus-within:ring-2 ring-blue-400">
               <Mail className="w-5 h-5 text-gray-400 mr-2" />
@@ -59,6 +59,13 @@ export default function Login() {
             Log In
           </button>
         </form>
+
+        <p className="text-center text-sm text-gray-500 mt-6">
+          Don't have an account?{" "}
+          <a href="/register" className="text-blue-600 hover:underline">
+            Register
+          </a>
+        </p>
       </div>
     </div>
   );

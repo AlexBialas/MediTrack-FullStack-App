@@ -1,37 +1,59 @@
+import { LogOut, CalendarDays, Stethoscope } from "lucide-react";
+
 export default function Dashboard() {
-  // Placeholder – dane będą pobierane po integracji z backendem
   const user = {
-    name: "Anna",
+    name: "Dr. Anna Nowak",
+    role: "Doctor",
     email: "anna@example.com",
-    role: "user",
   };
 
   return (
-    <div className="max-w-3xl mx-auto mt-10 p-6 bg-white rounded-xl shadow-md">
-      <h1 className="text-3xl font-semibold text-gray-800 mb-4">
-        Welcome, {user.name} 👋
-      </h1>
+    <div className="min-h-screen bg-gray-50 px-4 py-10">
+      <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-md">
+        <div className="flex justify-between items-center mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-blue-700">
+              Welcome, {user.name}
+            </h2>
+            <p className="text-sm text-gray-500">
+              {user.role} | {user.email}
+            </p>
+          </div>
+          <button className="flex items-center gap-2 text-sm text-red-600 hover:underline">
+            <LogOut className="w-4 h-4" />
+            Log out
+          </button>
+        </div>
 
-      <div className="mb-6 text-sm text-gray-600">
-        <p>
-          <strong>Email:</strong> {user.email}
-        </p>
-        <p>
-          <strong>Role:</strong> {user.role}
-        </p>
-      </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          <div className="bg-blue-100 p-6 rounded-xl flex gap-4 items-center">
+            <CalendarDays className="w-10 h-10 text-blue-700" />
+            <div>
+              <h3 className="text-lg font-semibold text-blue-800">
+                Upcoming Appointments
+              </h3>
+              <p className="text-sm text-gray-600">
+                View and manage your schedule
+              </p>
+            </div>
+          </div>
 
-      <button className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded">
-        Logout
-      </button>
+          <div className="bg-green-100 p-6 rounded-xl flex gap-4 items-center">
+            <Stethoscope className="w-10 h-10 text-green-700" />
+            <div>
+              <h3 className="text-lg font-semibold text-green-800">
+                My Patients
+              </h3>
+              <p className="text-sm text-gray-600">
+                Access patient history & records
+              </p>
+            </div>
+          </div>
+        </div>
 
-      <hr className="my-6" />
-
-      <div>
-        <h2 className="text-xl font-medium text-gray-700 mb-2">
-          Your Appointments
-        </h2>
-        <p className="text-gray-500">You have no appointments yet.</p>
+        <div className="mt-8 text-sm text-gray-400 text-center">
+          This is a sample dashboard UI. Data will be loaded from the backend.
+        </div>
       </div>
     </div>
   );

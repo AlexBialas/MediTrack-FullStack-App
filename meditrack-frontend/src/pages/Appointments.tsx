@@ -1,61 +1,54 @@
-type Appointment = {
-  id: string;
+import { CalendarDays, User, Clock } from "lucide-react";
+
+interface Appointment {
+  id: number;
   patientName: string;
+  doctor: string;
   date: string;
   time: string;
-  type: string;
-  doctor: string;
-};
+}
 
-const dummyAppointments: Appointment[] = [
+const mockAppointments: Appointment[] = [
   {
-    id: "a1",
-    patientName: "Anna Kowalska",
-    date: "2025-05-22",
-    time: "10:00",
-    type: "Consultation",
-    doctor: "Dr. Müller",
+    id: 1,
+    patientName: "Elena Müller",
+    doctor: "Dr. Anna Nowak",
+    date: "2025-05-23",
+    time: "09:30",
   },
   {
-    id: "a2",
-    patientName: "Jan Nowak",
-    date: "2025-05-23",
-    time: "14:30",
-    type: "Follow-up",
-    doctor: "Dr. Schmidt",
+    id: 2,
+    patientName: "Tobias Schmidt",
+    doctor: "Dr. Michael Braun",
+    date: "2025-05-24",
+    time: "14:00",
   },
 ];
 
 export default function Appointments() {
   return (
-    <div className="max-w-5xl mx-auto mt-10 bg-white p-6 rounded-xl shadow-md">
-      <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-        Appointments
-      </h2>
-
-      <div className="overflow-x-auto">
-        <table className="min-w-full table-auto border border-gray-200">
-          <thead className="bg-gray-100 text-gray-700 text-sm uppercase">
-            <tr>
-              <th className="px-4 py-2 text-left">Patient</th>
-              <th className="px-4 py-2 text-left">Date</th>
-              <th className="px-4 py-2 text-left">Time</th>
-              <th className="px-4 py-2 text-left">Type</th>
-              <th className="px-4 py-2 text-left">Doctor</th>
-            </tr>
-          </thead>
-          <tbody>
-            {dummyAppointments.map((appt) => (
-              <tr key={appt.id} className="border-t text-sm text-gray-700">
-                <td className="px-4 py-2">{appt.patientName}</td>
-                <td className="px-4 py-2">{appt.date}</td>
-                <td className="px-4 py-2">{appt.time}</td>
-                <td className="px-4 py-2">{appt.type}</td>
-                <td className="px-4 py-2">{appt.doctor}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+    <div>
+      <h2 className="text-2xl font-bold text-blue-700 mb-6">Appointments</h2>
+      <div className="grid gap-6 md:grid-cols-2">
+        {mockAppointments.map((appt) => (
+          <div
+            key={appt.id}
+            className="bg-white p-6 rounded-xl shadow-md border border-blue-100"
+          >
+            <h3 className="text-lg font-semibold text-gray-800 mb-2 flex items-center gap-2">
+              <CalendarDays className="w-5 h-5 text-blue-500" />
+              {appt.date} @ {appt.time}
+            </h3>
+            <p className="flex items-center text-sm text-gray-600">
+              <User className="w-4 h-4 mr-1 text-gray-400" />
+              {appt.patientName}
+            </p>
+            <p className="flex items-center text-sm text-gray-600">
+              <Clock className="w-4 h-4 mr-1 text-gray-400" />
+              {appt.doctor}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
