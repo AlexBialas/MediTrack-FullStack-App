@@ -1,6 +1,10 @@
 {
   "dependencies": {
+    "framer-motion": "^12.12.1",
     "lucide-react": "^0.511.0",
-    "react-router-dom": "^7.6.0"
+    "react-countup": "^6.5.3",
+    "react-router-dom": "^7.6.0",
+    "react-scroll": "^1.9.3",
+    "react-scrollspy": "^3.4.3"
   }
 }
