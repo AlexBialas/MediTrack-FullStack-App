@@ -4,12 +4,12 @@ import mongoose from "mongoose";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes";
 import protectedRoutes from "./routes/protectedRoutes"; // jeśli masz
-import { authenticateToken } from "./middleware/authMiddleware"; // jeśli masz
+import patientRoutes from "./routes/patient.routes"; // NOWE
+import { authenticateToken } from "./middleware/authMiddleware";
 
 dotenv.config();
 
-const app = express(); // <- Musi być najpierw!
-
+const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
@@ -18,14 +18,15 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api", protectedRoutes); // tylko jeśli istnieje
+app.use("/api", protectedRoutes); // jeśli masz
+app.use("/api/patients", authenticateToken, patientRoutes); // NOWE
 
 // Test
 app.get("/api/hello", (_req, res) => {
   res.json({ message: "Hello from MediTrack backend!" });
 });
 
-// MongoDB connection
+// MongoDB
 mongoose
   .connect(process.env.MONGO_URI!)
   .then(() => {
