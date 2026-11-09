@@ -7,7 +7,7 @@ import {
   LogOut,
   UserPlus,
   CalendarPlus,
-  ShieldCheck,
+  ShieldcccCheck,
 } from "lucide-react";
 
 export default function DashboardLayout() {
