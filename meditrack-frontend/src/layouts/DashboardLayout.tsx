@@ -13,7 +13,7 @@ import {
 export default function DashboardLayout() {
   const location = useLocation();
 
-  const navItems = [
+  const navItems = [dddd
     { path: "/dashboard", label: "Overview", icon: <Home size={18} /> },
     {
       path: "/dashboard/patients",
