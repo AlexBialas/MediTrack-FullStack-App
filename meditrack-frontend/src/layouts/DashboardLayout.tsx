@@ -15,7 +15,7 @@ export default function DashboardLayout() {
 
   const navItems = [dddd
     { path: "/dashboard", label: "Overview", icon: <Home size={18} /> },
-    {
+    {kkk
       path: "/dashboard/patients",
       label: "Patients",
       icon: <Users size={18} />,
